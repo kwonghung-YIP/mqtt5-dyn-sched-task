@@ -1,0 +1,40 @@
+logging:
+  level:
+    logging.level.web: debug
+    reactor.netty.http.client: debug
+    org.springframework.security: debug
+    #org.springframework.security.oauth2: debug
+    #com.solacesystems.jcsmp: warn
+
+spring:
+  main:
+    web-application-type: none
+    
+  security:
+    oauth2:
+      client:
+        registration:
+          racing-touch:
+            provider: ciam
+            authorization-grant-type: client_credentials
+            client-id: ${hkjc.racing-touch.client-id}
+            client-secret: ${hkjc.racing-touch.client-secret}
+            client-authentication-method: client_secret_basic
+        provider:
+          ciam:
+            token-uri: ${hkjc.auth-api-domain}/token
+            
+hkjc:
+  auth-api-domain: https://auth01devint.api.iuww.com:8001
+  info-api-domain: https://info01devint.api.iuww.com:8001
+  racing-touch:
+    client-id: bp9XMdCYjzceUFbZgZzdk4a4dmka
+    client-secret: HpvlR_VSkH7ZwHmoCyDNoIa5OZQa
+    
+solace:
+  java:
+    host: tcps://mrnzmkh0ufgnb.messaging.solace.cloud:55443
+    msg-vpn: poc
+    client-name: springboot-javaapi-client
+    client-username: solace-cloud-client 
+    client-password: e6r6a8ufj56v9dimfp6tgdectt    
